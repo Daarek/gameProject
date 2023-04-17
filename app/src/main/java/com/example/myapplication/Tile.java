@@ -12,8 +12,8 @@ public class Tile {
       public int type;
     }
     public class grass {
-      public int size;
       public int resource;
+      public int size;
     }
     public class bush {
       public int resource;
