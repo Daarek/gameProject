@@ -1,96 +1,112 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity { //さんとりお!
 
-    LinearLayout layout = findViewById(R.id.layout); // ищу экран (а где?)
+    ConstraintLayout layout;
     TextView map[][] = new TextView[20][20]; //массив текствьювов (когда узнал что оно работает чуть от радости не помер)
-    public int mapStatus[][] = new int[20][20];
+    public String mapStatus[][] = new String[20][20];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        layout = findViewById(R.id.layout); // ищу экран (а где?)
+
         for (int x = 0; x < 20; x++) { //генерирую карту
             for (int y = 0; y < 20; y++){  //oh no
-                mapStatus[x][y] = 0;
+                mapStatus[x][y] = "0";
                 map[x][y] = new TextView(this);
                 map[x][y].setText(mapStatus[x][y]); //оно же сработает?
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT); //oh no x2
+                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT); //oh no x2
                 params.setMargins(x * 10, y * 10, 0, 0); //пофиг на новую переменную, локальная же
                 map[x][y].setLayoutParams(params); //делаем отступы и забываем про локал до следующей итерации
                 map[x][y].setHeight(10);
                 map[x][y].setWidth(10);
-                layout.addView(map[x][y]);//чуть не забыл отобразить (да как это бл еще не сломалось?)
+                setContentView(layout);//чуть не забыл отобразить (да как это бл еще не сломалось?)
             }
         }
 
         Character me = new Character(5, 6);//создаю персонажа
         movement(0, 5, 0, 6); //замена нулевых координат на 0 никому не повредит, всё равно не могу оставить пустым/null
+        /*
+        layout.setOnTouchListener(new View.OnTouchListener() { //обработка нажатий
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
 
-        view.setOnTouchListener(new View.OnTouchListener() {
+                double x = motionEvent.getX();
+                double y = motionEvent.getY();
 
-        @Override
+                double actX = x - me.layoutX;
+                double actY = y - me.layoutY;
 
-        public boolean onTouch(View v, MotionEvent event) {
- 
-            // Get the coordinates of the touch event
+                if (actX > 0){ //справа
 
-            double x = event.getX();
+                    if (actY > 0){//справа-сверху
+                        if (checkDiagonal(actX, actY)){movement();}
+                    } else if (actY < 0) {//справа-снизу
 
-            double y = event.getY();
-            
-            double actualX = me.X - x;
-            
-            double actualY = me Y - y;
-            
-            if(actualX > 0){ //справа
-                if(actualY > 0){//справа-сверху
-                    
-                } else if (actualY < 0) {//справа-снизу
-                    
-                } else {//справа
-                    movement (me.x, me.x + 1, me.y, me.y);
-                    me.x++;
+                    } else { //справа
+
+                    }
+
+                } else if (actX < 0){//слева
+
+                    if (actY > 0){//слева-сверху
+
+                    } else if (actY < 0) {//слева-снизу
+
+                    } else { //слева
+
+                    }
+
+                }else{//центр по горизонтали
+
+                    if (actY > 0){//сверху
+
+                    } else if (actY < 0) {//снизу
+
+                    } else { //центр
+
+                    }
+
                 }
-            } else if (actualX < 0) {//слева
-                if(actualY > 0){//слева-сверху
 
-                    
-
-                } else if (actualY < 0) {//слева-снизу
-
-                    
-
-                } else {//слева
-
-                    movement (me.x, me.x - 1, me.y, me.y);
-
-                    me.x--;
-
-                }
-            }else{//центр
-                
+                return false;
             }
-
-            return true;
-  
-        }
-
-    });
+        }); */
 
     }
 
     public void movement (int prevX, int X, int prevY, int Y) { //чтобы двигаться
-        mapStatus[prevX][prevY] = 0;
-        mapStatus[X][Y] = 1;
+        mapStatus[prevX][prevY] = "0";
+        mapStatus[X][Y] = "1";
         map[prevX][prevY].setText(mapStatus[prevX][prevY]);
         map[X][Y].setText(mapStatus[X][Y]);
+
+    }
+
+    public boolean checkDiagonal (double x, double y){
+
+        double absX = Math.abs(x); //беру модули относительных координат
+        double absY = Math.abs(y);
+
+        if ( (absX/absY > -1.5) | (absX/absY < 1.5)){ //проверкаб насколько координаты "диагональны"
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }
+
+

@@ -5,7 +5,7 @@ public class Character { //мэин хиро
     public int y;
     public int layoutX; // x y на экране
     public int layoutY;
-    public Character (int x, int y){
+    public Character (int x, int y) {
         this.x = x;
         this.y = y;
         this.layoutX = x * 10;
