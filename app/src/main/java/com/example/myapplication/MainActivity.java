@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity { //さんとりお!
 
     LinearLayout layout = findViewById(R.id.layout); // ищу экран (а где?)
     TextView map[][] = new TextView[20][20]; //массив текствьювов (когда узнал что оно работает чуть от радости не помер)
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void movement (int prevX, int X, int prevY, int Y) {
+    public void movement (int prevX, int X, int prevY, int Y) { //чтобы двигаться
         mapStatus[prevX][prevY] = 0;
         mapStatus[X][Y] = 1;
         map[prevX][prevY].setText(mapStatus[prevX][prevY]);
