@@ -33,7 +33,56 @@ public class MainActivity extends AppCompatActivity { //さんとりお!
         Character me = new Character(5, 6);//создаю персонажа
         movement(0, 5, 0, 6); //замена нулевых координат на 0 никому не повредит, всё равно не могу оставить пустым/null
 
+        view.setOnTouchListener(new View.OnTouchListener() {
 
+        @Override
+
+        public boolean onTouch(View v, MotionEvent event) {
+ 
+            // Get the coordinates of the touch event
+
+            double x = event.getX();
+
+            double y = event.getY();
+            
+            double actualX = me.X - x;
+            
+            double actualY = me Y - y;
+            
+            if(actualX > 0){ //справа
+                if(actualY > 0){//справа-сверху
+                    
+                } else if (actualY < 0) {//справа-снизу
+                    
+                } else {//справа
+                    movement (me.x, me.x + 1, me.y, me.y);
+                    me.x++;
+                }
+            } else if (actualX < 0) {//слева
+                if(actualY > 0){//слева-сверху
+
+                    
+
+                } else if (actualY < 0) {//слева-снизу
+
+                    
+
+                } else {//слева
+
+                    movement (me.x, me.x - 1, me.y, me.y);
+
+                    me.x--;
+
+                }
+            }else{//центр
+                
+            }
+
+            return true;
+  
+        }
+
+    });
 
     }
 
