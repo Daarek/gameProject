@@ -18,7 +18,9 @@ public class MainActivity extends AppCompatActivity { //さんとりお!
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
+        
+        TextView setup[][] = new TextView[20][20]//разовая привязочная ссылка
         layout = findViewById(R.id.layout); // ищу экран (а где?)
 
         for (int x = 0; x < 20; x++) { //генерирую карту
@@ -28,10 +30,17 @@ public class MainActivity extends AppCompatActivity { //さんとりお!
                 map[x][y].setText(mapStatus[x][y]); //оно же сработает?
                 ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT); //oh no x2
                 params.setMargins(x * 10, y * 10, 0, 0); //пофиг на новую переменную, локальная же
+                params.setId("id");//временный айди
+                
+
                 map[x][y].setLayoutParams(params); //делаем отступы и забываем про локал до следующей итерации
+                View layoutSetup = getLayoutInflater().inflate(layout, null);//разовая лэйаут ссылка (надо)
+                setup[x][y] = layoutSetup.findViewById(R.id.id);//ищу элемент на экране по айди
+                params.setId("tile");//отвязываю айди
+                map[x][y].setLayoutParams(params);
                 map[x][y].setHeight(10);
                 map[x][y].setWidth(10);
-                setContentView(layout);//чуть не забыл отобразить (да как это бл еще не сломалось?)
+                setContentView(layoutSetup);//чуть не забыл отобразить (да как это бл еще не сломалось?)
             }
         }
 
