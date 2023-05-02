@@ -2,7 +2,7 @@ package com.example.myapplication;
 
 public class Character { //мэин хиро
     public int x; // x y на поле
-    public int y;
+    public int y; //!!!переделать координаты под биткарту!!!
     public int layoutX; // x y на экране
     public int layoutY;
     public Character (int x, int y) {

@@ -3,46 +3,26 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.xmlpull.v1.XmlPullParser;
+
 public class MainActivity extends AppCompatActivity { //さんとりお!
 
-    ConstraintLayout layout;
     TextView map[][] = new TextView[20][20]; //массив текствьювов (когда узнал что оно работает чуть от радости не помер)
     public String mapStatus[][] = new String[20][20];
+    static Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        
-        TextView setup[][] = new TextView[20][20]//разовая привязочная ссылка
-        layout = findViewById(R.id.layout); // ищу экран (а где?)
-
-        for (int x = 0; x < 20; x++) { //генерирую карту
-            for (int y = 0; y < 20; y++){  //oh no
-                mapStatus[x][y] = "0";
-                map[x][y] = new TextView(this);
-                map[x][y].setText(mapStatus[x][y]); //оно же сработает?
-                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT); //oh no x2
-                params.setMargins(x * 10, y * 10, 0, 0); //пофиг на новую переменную, локальная же
-                params.setId("id");//временный айди
-                
-
-                map[x][y].setLayoutParams(params); //делаем отступы и забываем про локал до следующей итерации
-                View layoutSetup = getLayoutInflater().inflate(layout, null);//разовая лэйаут ссылка (надо)
-                setup[x][y] = layoutSetup.findViewById(R.id.id);//ищу элемент на экране по айди
-                params.setId("tile");//отвязываю айди
-                map[x][y].setLayoutParams(params);
-                map[x][y].setHeight(10);
-                map[x][y].setWidth(10);
-                setContentView(layoutSetup);//чуть не забыл отобразить (да как это бл еще не сломалось?)
-            }
-        }
+        context = this;
 
         Character me = new Character(5, 6);//создаю персонажа
         movement(0, 5, 0, 6); //замена нулевых координат на 0 никому не повредит, всё равно не могу оставить пустым/null
@@ -95,7 +75,7 @@ public class MainActivity extends AppCompatActivity { //さんとりお!
 
     }
 
-    public void movement (int prevX, int X, int prevY, int Y) { //чтобы двигаться
+    public void movement (int prevX, int X, int prevY, int Y) { //чтобы двигаться, переделать!!!
         mapStatus[prevX][prevY] = "0";
         mapStatus[X][Y] = "1";
         map[prevX][prevY].setText(mapStatus[prevX][prevY]);
@@ -108,12 +88,16 @@ public class MainActivity extends AppCompatActivity { //さんとりお!
         double absX = Math.abs(x); //беру модули относительных координат
         double absY = Math.abs(y);
 
-        if ( (absX/absY > -1.5) | (absX/absY < 1.5)){ //проверкаб насколько координаты "диагональны"
+        if ( (absX/absY > -1.5) | (absX/absY < 1.5)){ //проверка, насколько координаты "диагональны"
             return true;
         } else {
             return false;
         }
 
+    }
+
+    public static Context Context(){ //просто чтобы получить статический this к mainActivity
+        return context;
     }
 
 }

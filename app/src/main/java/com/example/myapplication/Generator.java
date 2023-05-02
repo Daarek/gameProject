@@ -14,10 +14,10 @@ public class Generator {
       return 3; //grass
     } else if (generated < 1) {
       return 4;//bush
-    } /* else {
-      //обработать ошибку генератора
-    }*/
-    return 0;
+    }  else {
+      return 0;
+    }
+
   }
 
 }

@@ -1,6 +1,6 @@
 package com.example.myapplication;
 
-public class Tile {
+public class Tile {//возможно, будет бесполезен
     public class tree {
       public int resource;
       public int size;
