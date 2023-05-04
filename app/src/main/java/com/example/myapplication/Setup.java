@@ -1,33 +1,38 @@
 package com.example.myapplication;
 
 import android.graphics.Color;
+import android.widget.ImageView;
 
-public class Setup {
+public class Setup { //Настройка карты (класс нужен чтобы все не развалилось)
 
     public int width;
     public int height;
-    public Setup (int w, int h){
+    ImageView map;
+    public Setup (int w, int h, ImageView m){
         width = w;
         height = h;
+        map = m;
     }
 
     public void build(){
         Generator generator = new Generator();
-        MapData mapData = new MapData();
-        Render render = new Render(MainActivity.Context(), width, height); //НеВеРоЯтНо! ОнО рАбОтАет!
+        MapData mapData = new MapData(width, height);
+        Render render = new Render(MainActivity.Context(), map, width, height); //НеВеРоЯтНо! ОнО рАбОтАет!
         render.setup();
 
-        for (int x = width; x >= 0; x-- ){
-            for (int y = height; y >= 0; y--){
-                int type = generator.generate();
-                mapData.type[x][y] = type;
+        for (int x = width - 1; x >= 0; x-- ){
+            for (int y = height - 1; y >= 0; y--){
+                Tile type = generator.generate();
                 int color = 0;
-                if(type == 0){color = Color.rgb(100, 100, 100);}
-                else if (type == 1){color = Color.rgb(150, 255, 150);}
-                else if (type == 2){color = Color.rgb(200, 200, 200);}
-                else if (type == 3){color = Color.rgb(0, 255, 0);}
-                else if (type == 4){color = Color.rgb(80, 255, 0);}
-                render.generate(x, y, color);
+                mapData.type[x][y] = type;
+                switch (type){
+                    case EMPTY: color = Color.rgb(100, 100, 100); break;
+                    case TREE: color = Color.rgb(150, 255, 150); break;
+                    case STONE: color = Color.rgb(200, 200, 200); break;
+                    case GRASS: color = Color.rgb(0, 200, 0); break;
+                    case BUSH: color = Color.rgb(80, 180, 0); break;
+                }
+                render.generate(x , y, color);
             }
         }
         render.finish();

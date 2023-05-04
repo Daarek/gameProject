@@ -1,9 +1,9 @@
 package com.example.myapplication;
 
-public class MapData {
+public class MapData { //Данные о каждом тайле
 
-    public int type[][];
-    public MapData() {
-
+    public Tile[][] type;
+    public MapData(int w, int h) {
+        type = new Tile[w][h];
     }
 }

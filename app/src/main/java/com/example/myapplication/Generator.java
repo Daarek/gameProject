@@ -1,23 +1,20 @@
 package com.example.myapplication;
 
-public class Generator {
+public class Generator { //генерация тайлов и структур (позже)
 
-  public int generate () {
+  public Tile generate () {
     double generated = Math.random();
     if (generated < 0.6){
-      return 0; //empty tile
+      return Tile.EMPTY;
     } else if (generated < 0.7){
-      return 1; //tree
+      return Tile.TREE;
     } else if (generated < 0.8){
-      return 2; //stone
+      return Tile.STONE;
     } else if (generated < 0.9){
-      return 3; //grass
-    } else if (generated < 1) {
-      return 4;//bush
-    }  else {
-      return 0;
+      return Tile.GRASS;
+    } else {
+      return Tile.BUSH;
     }
-
   }
 
 }
