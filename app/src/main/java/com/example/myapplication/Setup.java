@@ -38,5 +38,8 @@ public class Setup { //Настройка карты (класс нужен чт
         render.finish();
 
     }
+    public getMapData() {
+        return mapData;
+    }
 
 }
