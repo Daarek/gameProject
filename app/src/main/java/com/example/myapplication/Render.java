@@ -5,8 +5,7 @@ import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
 
-public class Render extends View { //рендеринг карты
-
+public class Render { //рендеринг карты
     Bitmap bit;//создание биткарты
     ImageView map;//создание карты
 
@@ -14,7 +13,6 @@ public class Render extends View { //рендеринг карты
     int height;
 
     public Render(Context context, ImageView m, int w, int h) {//надо, не трогай
-        super(context);
         width = w;
         height = h;
         map = m;
@@ -28,6 +26,7 @@ public class Render extends View { //рендеринг карты
         bit.setPixel(x, y, color);
     }
     public void finish (){
+
         map.setImageBitmap(bit);//установка биткарты поверх карты
     }
 

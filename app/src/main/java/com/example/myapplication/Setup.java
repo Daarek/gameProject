@@ -8,6 +8,11 @@ public class Setup { //Настройка карты (класс нужен чт
     public int width;
     public int height;
     ImageView map;
+
+    MapData mapData;
+    Render render;
+    Generator generator;
+    Character character;
     public Setup (int w, int h, ImageView m){
         width = w;
         height = h;
@@ -15,9 +20,10 @@ public class Setup { //Настройка карты (класс нужен чт
     }
 
     public void build(){
-        Generator generator = new Generator();
-        MapData mapData = new MapData(width, height);
-        Render render = new Render(MainActivity.Context(), map, width, height); //НеВеРоЯтНо! ОнО рАбОтАет!
+        character = new Character(MainActivity.Context(), 0, 0);
+        generator = new Generator();
+        mapData = new MapData(width, height);
+        render = new Render(MainActivity.Context(), map, width, height); //НеВеРоЯтНо! ОнО рАбОтАет!
         render.setup();
 
         for (int x = width - 1; x >= 0; x-- ){
@@ -35,10 +41,11 @@ public class Setup { //Настройка карты (класс нужен чт
                 render.generate(x , y, color);
             }
         }
+
         render.finish();
 
     }
-    public getMapData() {
+    public MapData getMapData() {
         return mapData;
     }
 
