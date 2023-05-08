@@ -7,5 +7,6 @@ public enum Tile { //типы тайлов
     STONE,
     BUSH,
     GRASS,
+    PLAYER;
 
 }

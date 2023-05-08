@@ -3,7 +3,7 @@ package com.example.myapplication;
 import android.graphics.Color;
 import android.widget.ImageView;
 
-public class Setup { //Настройка карты (класс нужен чтобы все не развалилось)
+public class Setup { //Настройка карты (класс нужен чтобы все не развалилось) + все геттеры обьектов
 
     public int width;
     public int height;
@@ -20,7 +20,7 @@ public class Setup { //Настройка карты (класс нужен чт
     }
 
     public void build(){
-        character = new Character(MainActivity.Context(), 0, 0);
+        character = new Character(MainActivity.Context(), width/2, height/2);
         generator = new Generator();
         mapData = new MapData(width, height);
         render = new Render(MainActivity.Context(), map, width, height); //НеВеРоЯтНо! ОнО рАбОтАет!
@@ -32,21 +32,25 @@ public class Setup { //Настройка карты (класс нужен чт
                 int color = 0;
                 mapData.type[x][y] = type;
                 switch (type){
-                    case EMPTY: color = Color.rgb(100, 100, 100); break;
-                    case TREE: color = Color.rgb(150, 255, 150); break;
-                    case STONE: color = Color.rgb(200, 200, 200); break;
-                    case GRASS: color = Color.rgb(0, 200, 0); break;
-                    case BUSH: color = Color.rgb(80, 180, 0); break;
+                    case EMPTY: color = Color.rgb(200, 200, 200); break;//пустой тайл
+                    case TREE: color = Color.rgb(150, 255, 150); break;//дерево
+                    case STONE: color = Color.rgb(100, 100, 100); break;//камень
+                    case GRASS: color = Color.rgb(0, 200, 0); break;//трава
+                    case BUSH: color = Color.rgb(80, 180, 0); break;//куст
                 }
                 render.generate(x , y, color);
             }
         }
-
+        character.setReferences();
+        character.create();
+        int color = Color.rgb(0, 0, 255);
+        render.generate(character.x, character.y, color);
         render.finish();
 
     }
     public MapData getMapData() {
         return mapData;
     }
+    public Character getCharacter(){return character;}
 
 }

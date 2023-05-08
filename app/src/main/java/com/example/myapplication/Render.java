@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -26,8 +27,9 @@ public class Render { //рендеринг карты
         bit.setPixel(x, y, color);
     }
     public void finish (){
-
-        map.setImageBitmap(bit);//установка биткарты поверх карты
+        BitmapDrawable bitDraw = new BitmapDrawable(MainActivity.context(), bit);
+        bitDraw.setFilterBitmap(false);
+        map.setImageDrawable(bitDraw);//установка биткарты поверх карты
     }
 
 }
