@@ -5,28 +5,28 @@ import android.widget.ImageView;
 
 public class Setup { //Настройка карты (класс нужен чтобы все не развалилось) + все геттеры обьектов
 
-    public int width;
+    public int width; //статы и вьюшка
     public int height;
     ImageView map;
 
-    MapData mapData;
+    MapData mapData; //все обьекты
     Render render;
     Generator generator;
     Character character;
-    public Setup (int w, int h, ImageView m){
+    public Setup (int w, int h, ImageView m){ //получаю все что надо
         width = w;
         height = h;
         map = m;
     }
 
     public void build(){
-        character = new Character(MainActivity.Context(), width/2, height/2);
-        generator = new Generator();
-        mapData = new MapData(width, height);
-        render = new Render(MainActivity.Context(), map, width, height); //НеВеРоЯтНо! ОнО рАбОтАет!
-        render.setup();
+        character = new Character(MainActivity.Context(), width/2, height/2); //создание персонажа
+        generator = new Generator(); //генератора
+        mapData = new MapData(width, height); //мапдаты
+        render = new Render(MainActivity.Context(), map, width, height); //и рендерера
+        render.setup(); //подготовОчка
 
-        for (int x = width - 1; x >= 0; x-- ){
+        for (int x = width - 1; x >= 0; x-- ){ //потайловая генерация
             for (int y = height - 1; y >= 0; y--){
                 Tile type = generator.generate();
                 int color = 0;
@@ -42,15 +42,17 @@ public class Setup { //Настройка карты (класс нужен чт
             }
         }
         character.setReferences();
-        character.create();
-        int color = Color.rgb(0, 0, 255);
-        render.generate(character.x, character.y, color);
-        render.finish();
+        character.create(); //подготовОчка
+        int color = Color.rgb(0, 0, 255); //PLAYER
+        render.generate(character.x, character.y, color); //ставлю персонажа
+        render.finish(); //отображаю биткарту
 
     }
-    public MapData getMapData() {
+    public MapData getMapData() { //отдаю мапдату
         return mapData;
     }
-    public Character getCharacter(){return character;}
+    public Character getCharacter(){//отдаю ярика
+        return character;
+    }
 
 }
