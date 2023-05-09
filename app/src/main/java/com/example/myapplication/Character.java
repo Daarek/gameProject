@@ -39,7 +39,18 @@ public class Character extends View { //мэин хиро
     }
     public void move(double actualX, double eventY){
         double actualY = eventY*shift; //понадобится позже (наверное)
-
+    if (actualX/actualY > 0){ //Верх или право
+        if (actualX+actualY > width){ //право
+            
+        } else {//Верх
+            
+        }
+    } else { //низ или лево
+        if (actualX+actualY > width){//низ
+            
+        } else { //лево
+            
+        }
     }
 
 }
