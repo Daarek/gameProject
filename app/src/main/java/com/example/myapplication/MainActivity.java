@@ -19,11 +19,11 @@ public class MainActivity extends AppCompatActivity { //さんとりお!
     static Context context;
     static Setup setup;
 
-    ImageView map;
+    ImageView map; //ссылки на элементы
     ConstraintLayout layout;
-    Character character;
+    Character character; //получу персонажа позже
 
-    public static Resources context() {//другой контекст (?)
+    public static Resources context() {//другой контекст для Drawable
 
         return null;
     }
@@ -35,24 +35,24 @@ public class MainActivity extends AppCompatActivity { //さんとりお!
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        context = this;
-        map = findViewById(R.id.map);
+        context = this;//контекст в context()
+        map = findViewById(R.id.map);//получаю вьюшку
 
         setup = new Setup(20, 20, map);//настраиваю сетап
         setup.build();
-        character = setup.getCharacter(); //получаю ссылку на обьект персонааж
-        layout = findViewById(R.id.layout);
+        character = setup.getCharacter(); //получаю ссылку на обьект персонажа
+        layout = findViewById(R.id.layout);//получаю лейаут и ставлю обработку тапов
         layout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                character.move(motionEvent.getX(), motionEvent.getY());
+                character.move(motionEvent.getX(), motionEvent.getY()); //взываю к богам (передвижение)
                 return false;
             }
         });
 
 
     }
-    public static Context Context(){ //просто чтобы получить this к mainActivity
+    public static Context Context(){ //просто чтобы получить this для Render
         return context;
     }
 
