@@ -13,7 +13,7 @@ public class Render { //рендеринг карты
     int width;
     int height;
 
-    public Render(Context context, ImageView m, int w, int h) {//надо, не трогай
+    public Render(Context context, ImageView m, int w, int h) {//получаю всё что надо
         width = w;
         height = h;
         map = m;
@@ -28,7 +28,7 @@ public class Render { //рендеринг карты
     }
     public void finish (){
         BitmapDrawable bitDraw = new BitmapDrawable(MainActivity.context(), bit);
-        bitDraw.setFilterBitmap(false);
+        bitDraw.setFilterBitmap(false);//биткарта больше не выглядит как со зрением -12
         map.setImageDrawable(bitDraw);//установка биткарты поверх карты
     }
 
