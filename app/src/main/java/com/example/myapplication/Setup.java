@@ -13,6 +13,7 @@ public class Setup { //Настройка карты (класс нужен чт
     Render render;
     Generator generator;
     Character character;
+    Colors colors;
     public Setup (int w, int h, ImageView m){ //получаю все что надо
         width = w;
         height = h;
@@ -23,6 +24,7 @@ public class Setup { //Настройка карты (класс нужен чт
         character = new Character(MainActivity.Context(), width/2, height/2); //создание персонажа
         generator = new Generator(); //генератора
         mapData = new MapData(width, height); //мапдаты
+        colors = new Colors(width, height);
         render = new Render(MainActivity.Context(), map, width, height); //и рендерера
         render.setup(); //подготовОчка
 
@@ -32,18 +34,19 @@ public class Setup { //Настройка карты (класс нужен чт
                 int color = 0;
                 mapData.type[x][y] = type;
                 switch (type){
-                    case EMPTY: color = Color.rgb(200, 200, 200); break;//пустой тайл
-                    case TREE: color = Color.rgb(150, 255, 150); break;//дерево
-                    case STONE: color = Color.rgb(100, 100, 100); break;//камень
-                    case GRASS: color = Color.rgb(0, 200, 0); break;//трава
-                    case BUSH: color = Color.rgb(80, 180, 0); break;//куст
+                    case EMPTY: color = colors.empty; break;//пустой тайл
+                    case TREE: color = colors.tree; break;//дерево
+                    case STONE: color = colors.stone; break;//камень
+                    case GRASS: color = colors.grass; break;//трава
+                    case BUSH: color = colors.bush; break;//куст
                 }
                 render.generate(x , y, color);
+                colors.colorMap[x][y] = color;
             }
         }
         character.setReferences();
         character.create(); //подготовОчка
-        int color = Color.rgb(0, 0, 255); //PLAYER
+        int color = colors.player; //PLAYER
         render.generate(character.x, character.y, color); //ставлю персонажа
         render.finish(); //отображаю биткарту
 
@@ -53,6 +56,12 @@ public class Setup { //Настройка карты (класс нужен чт
     }
     public Character getCharacter(){//отдаю ярика
         return character;
+    }
+    public Render getRender () {
+        return render;
+    }
+    public Colors getColors (){
+        return colors;
     }
 
 }
