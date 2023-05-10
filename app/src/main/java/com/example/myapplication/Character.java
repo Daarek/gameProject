@@ -19,7 +19,9 @@ public class Character extends View { //мэин хиро
     public int height;
     Setup setup; //сетапер
     Render render; //рендерер
-    Colors colors;
+    Colors colors; //цвета
+    AlertDialog.builder builder;
+    AlertDialog menu;
     public Character (Context context, int X, int Y) {
         super(context);
         x = X; //получаю стартовые координаты игрока
@@ -38,7 +40,16 @@ public class Character extends View { //мэин хиро
         mapData = setup.getMapData(); //получаю мапдату
         render = setup.getRender(); //получаю рендерер
         colors = setup.getColors();
-
+        builder = new AlertDialog.builder(MainActivity.context());
+        builder.setTitle("Menu");
+        builder.setCancelable(true);
+        builder.setPositiveButton("do flip", new DialogInterface.onClickListener() {
+            @Override
+            public void onClick(DialogInterface DIOlog, int which){
+                //do flip
+            }
+        )};
+        menu = builder.create();
     }
     public void create(){
         mapData.type[x][y] = PLAYER; //координаты игрока на битмапе (поверх тайлов)
