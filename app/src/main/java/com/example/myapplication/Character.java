@@ -58,6 +58,14 @@ public class Character extends View { //мэин хиро
     }
     public void move(double actualX, double eventY) {
         double actualY = eventY * shift; //понадобится позже (наверное)
+        double actualHeight = height * shift;
+        double fwp = width * 0,4;
+        double swp = width * 0,6;
+        double fhp = actualHeight * 0,4;
+        double shp = actualHeight * 0,6;
+        if ((fwp > actualX > swp) && (fhp > actualY > shp)){
+            //Вывести меню
+        } else {
         if (actualX / actualY > 1) { //Верх или право
             if (actualX + actualY > width) { //право
                 mapData.type[x][y] = null;
@@ -92,6 +100,8 @@ public class Character extends View { //мэин хиро
             }
         }
         render.finish();
+        }
     }
+    
 
 }
