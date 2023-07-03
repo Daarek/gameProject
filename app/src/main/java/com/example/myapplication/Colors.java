@@ -11,6 +11,6 @@ public class Colors {
     public final int player = Color.rgb(0, 0, 255);
     public int[][] colorMap;
     public Colors (int width, int height){
-        colorMap = new int[width][height];
+        colorMap = new int[width][height]; //поверхность земли без игрока
     }
 }

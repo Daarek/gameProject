@@ -30,11 +30,11 @@ public class Setup { //Настройка карты (класс нужен чт
         menu = new Menu(); //менюшки
         render = new Render(MainActivity.Context(), map, width, height); //и рендерера
         render.setup(); //подготовОчка
-
+/*
         for (int x = width - 1; x >= 0; x-- ){ //потайловая генерация
             for (int y = height - 1; y >= 0; y--){
                 Tile type = generator.generate();
-                int color = 0;
+                int color = 0; //содержит цифровой код цвета (RGB)
                 mapData.type[x][y] = type;
                 switch (type){
                     case EMPTY: color = colors.empty; break;//пустой тайл
@@ -47,6 +47,7 @@ public class Setup { //Настройка карты (класс нужен чт
                 colors.colorMap[x][y] = color;
             }
         }
+        */
         character.setReferences();
         character.create(); //подготовОчка
         int color = colors.player; //PLAYER
