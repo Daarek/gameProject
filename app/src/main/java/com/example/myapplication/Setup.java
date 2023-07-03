@@ -14,6 +14,8 @@ public class Setup { //Настройка карты (класс нужен чт
     Generator generator;
     Character character;
     Colors colors;
+
+    Menu menu;
     public Setup (int w, int h, ImageView m){ //получаю все что надо
         width = w;
         height = h;
@@ -24,7 +26,8 @@ public class Setup { //Настройка карты (класс нужен чт
         character = new Character(MainActivity.Context(), width/2, height/2); //создание персонажа
         generator = new Generator(); //генератора
         mapData = new MapData(width, height); //мапдаты
-        colors = new Colors(width, height);
+        colors = new Colors(width, height); //цветовой палитры
+        menu = new Menu(); //менюшки
         render = new Render(MainActivity.Context(), map, width, height); //и рендерера
         render.setup(); //подготовОчка
 
@@ -62,6 +65,9 @@ public class Setup { //Настройка карты (класс нужен чт
     }
     public Colors getColors (){
         return colors;
+    }
+    public Menu getMenu () {
+        return menu;
     }
 
 }

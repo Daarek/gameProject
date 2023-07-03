@@ -22,8 +22,8 @@ public class Character extends View { //мэин хиро
     Setup setup; //сетапер
     Render render; //рендерер
     Colors colors; //цвета
+    Menu menu;
     AlertDialog alert;
-    AlertDialog.Builder alertBuilder;
 
     public Character (Context context, int X, int Y) {
         super(context);
@@ -35,7 +35,7 @@ public class Character extends View { //мэин хиро
         height = metrics.heightPixels;
         centerX = width/2; //получаю координаты центра
         centerY = height/2;
-        shift = (double) width/height; //получаю шифт (ширина/высота)
+        shift = (double) width/height; //получаю шифт (ширина/высота) (всегда между 0 и 1)
 
     }
     public void setReferences(){
@@ -43,15 +43,8 @@ public class Character extends View { //мэин хиро
         mapData = setup.getMapData(); //получаю мапдату
         render = setup.getRender(); //получаю рендерер
         colors = setup.getColors();
-        alertBuilder = new AlertDialog.Builder(MainActivity.Context());
-        alertBuilder.setTitle("Menu");
-        alertBuilder.setPositiveButton("Interact", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //-
-            }
-        });
-        alert = alertBuilder.create();
+        menu = setup.getMenu();
+        menu.setup();
 
     }
     public void create(){
@@ -67,7 +60,7 @@ public class Character extends View { //мэин хиро
         double fhp = actualHeight * 0.4;
         double shp = actualHeight * 0.6;
         if ((fwp < actualX && actualX < swp) && (fhp < actualY && actualY < shp)){ //проверяет, было ли нажатие в центре
-            alert.show();
+            menu.alert();
         } else {
             if (actualX / actualY > 1) { //Верх или право
                 if (actualX + actualY > width) { //право
