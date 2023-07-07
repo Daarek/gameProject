@@ -23,7 +23,7 @@ public class Render { //рендеринг карты
 
         bit = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888); //создание пустой битмапы
     }
-    public void generate(int x, int y, int color /* координаты пикселя и цвет*/){//первая прорисовка карты
+    public void generate(int x, int y, int color /* координаты пикселя и цвет*/){//задаёт один пиксель визуальной карты
         bit.setPixel(x, y, color);
     }
     public void finish (){

@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity { //さんとりお!
         int width = metrics.widthPixels; //получаю размеры экрана
         int height = metrics.heightPixels;
         shift = (double) width/height; //получаю шифт (ширина/высота) (всегда между 0 и 1)
-        setup = new Setup(20, (int)(20/shift) , map);//настраиваю сетап
+        setup = new Setup(40, 60 , 21, (int)(21/shift),map);//настраиваю сетап
         setup.build();
         character = setup.getCharacter(); //получаю ссылку на обьект персонажа
         layout = findViewById(R.id.layout);//получаю лейаут и ставлю обработку тапов
