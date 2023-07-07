@@ -35,7 +35,7 @@ public class Setup { //Настройка карты (класс нужен чт
     public void build(){
         character = new Character(MainActivity.Context(),  width/2, height/2); //создание персонажа
         generator = new Generator(); //генератора
-        mapData = new MapData(width, height); //мапдаты
+        mapData = new MapData(width, height, screenWidth, screenHeight); //мапдаты
         colors = new Colors(width, height); //цветовой палитры
         menu = new Menu(); //менюшки
         render = new Render(MainActivity.Context(), map, width, height); //и рендерера
@@ -76,12 +76,30 @@ public class Setup { //Настройка карты (класс нужен чт
 
     public void moveup (){
 
-
+        for (int y = screenHeight - 1; y >= 1; y--){
+            for (int x = screenWidth - 1; x >= 0; x--){
+                mapData.type[x][y] = mapData.type[x][y-1];
+            }
+        }
+        int y = character.y - (screenHeight/2);
+        int x = character.x - (screenWidth/2);
+        for (int thisx = screenWidth - 1; thisx >= 0; thisx --){
+            mapData.type[thisx][0] = mapData.floor[x][y - 1];
+        }
 
     }
     public void movedown (){
 
-
+        for (int y = 0; y >= screenHeight - 2; y++){
+            for (int x = screenWidth - 1; x >= 0; x++){
+                mapData.type[x][y] = mapData.type[x][y+1];
+            }
+        }
+        int y = character.y + (screenHeight/2);
+        int x = character.x + (screenWidth/2);
+        for (int thisx = screenWidth - 1; thisx >= 0; thisx --){
+            mapData.type[thisx][0] = mapData.floor[x][y - 1];
+        }
 
     }
     public void moveright (){
