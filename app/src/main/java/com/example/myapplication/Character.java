@@ -4,14 +4,12 @@ import static com.example.myapplication.Tile.PLAYER;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.View;
 
 public class Character extends View { //мэин хиро
-    public int x; // x и y
+    public int x; // x и y на локальной карте
     public int y;
     public MapData mapData; //данные о карте
     public double shift; //во сколько раз  ширина экрана меньше высоты
@@ -24,10 +22,11 @@ public class Character extends View { //мэин хиро
     Colors colors; //цвета
     Menu menu;
     AlertDialog alert;
+    Tile lastTile;
 
     public Character (Context context, int X, int Y) {
         super(context);
-        x = X; //получаю стартовые координаты игрока
+        x = X;
         y = Y;
         Resources res = getResources();
         DisplayMetrics metrics = res.getDisplayMetrics();
@@ -48,9 +47,8 @@ public class Character extends View { //мэин хиро
 
     }
     public void create(){
-        mapData.type[x][y] = PLAYER; //координаты игрока на битмапе (поверх тайлов)
-        mapData.playerPos[0] = x; //координаты игрока в .type
-        mapData.playerPos[1] = y;
+        lastTile = mapData.type[x][y];
+        mapData.type[x][y] = PLAYER; //координаты игрока на битмапе
     }
     public void move(double actualX, double eventY) {
         double actualY = eventY * shift;
@@ -64,32 +62,36 @@ public class Character extends View { //мэин хиро
         } else {
             if (actualX / actualY > 1) { //Верх или право
                 if (actualX + actualY > width) { //право
-                    mapData.type[x][y] = null;
+                    mapData.type[x][y] = lastTile;
                     render.generate(x, y, colors.colorMap[x][y]);
                     x++;
+                    lastTile = mapData.type[x][y];
                     mapData.type[x][y] = PLAYER;
                     mapData.playerPos[0]++;
                     render.generate(x, y, colors.player);
                 } else {//Верх
-                    mapData.type[x][y] = null;
+                    mapData.type[x][y] = lastTile;
                     render.generate(x, y, colors.colorMap[x][y]);
                     y--;
+                    lastTile = mapData.type[x][y];
                     mapData.type[x][y] = PLAYER;
                     mapData.playerPos[1]--;
                     render.generate(x, y, colors.player);
                 }
             } else { //низ или лево
                 if (actualX + actualY > width) {//низ
-                    mapData.type[x][y] = null;
+                    mapData.type[x][y] = lastTile;
                     render.generate(x, y, colors.colorMap[x][y]);
                     y++;
+                    lastTile = mapData.type[x][y];
                     mapData.type[x][y] = PLAYER;
                     mapData.playerPos[1]++;
                     render.generate(x, y, colors.player);
                 } else { //лево
-                    mapData.type[x][y] = null;
+                    mapData.type[x][y] = lastTile;
                     render.generate(x, y, colors.colorMap[x][y]);
                     x--;
+                    lastTile = mapData.type[x][y];
                     mapData.type[x][y] = PLAYER;
                     mapData.playerPos[0]--;
                     render.generate(x, y, colors.player);

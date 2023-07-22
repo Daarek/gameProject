@@ -33,14 +33,14 @@ public class Setup { //Настройка карты (класс нужен чт
     }
 
     public void build(){
-        character = new Character(MainActivity.Context(),  width/2, height/2); //создание персонажа
+        character = new Character(MainActivity.Context(),  screenWidth/2, screenHeight/2); //создание персонажа
         generator = new Generator(); //генератора
         mapData = new MapData(width, height, screenWidth, screenHeight); //мапдаты
         colors = new Colors(width, height); //цветовой палитры
         menu = new Menu(); //менюшки
-        render = new Render(MainActivity.Context(), map, width, height); //и рендерера
+        render = new Render(MainActivity.Context(), map, screenWidth, screenHeight); //и рендерера
         render.setup(); //подготовОчка
-        for (int x = 39; x >= 0; x--){
+        for (int x = 39; x >= 0; x--){ //генерация всей карты
             for (int y = 59; y >= 0; y--){
                 Tile type = generator.generate();
                 mapData.floor[x][y] = type;
@@ -50,6 +50,7 @@ public class Setup { //Настройка карты (класс нужен чт
         int y = -1;
         for (int scrx = character.x - (screenWidth/2); scrx <= character.x + (screenWidth/2); scrx++){ //потайловая генерация изображения
             x++;
+            y = -1;
             for (int scry = character.y - (screenHeight/2); scry <= character.y + (screenHeight/2); scry++){
                 y++;
                 mapData.type[x][y] = mapData.floor[scrx][scry];
@@ -74,43 +75,45 @@ public class Setup { //Настройка карты (класс нужен чт
 
     }
 
-    public void moveup (){
-
-        for (int y = screenHeight - 1; y >= 1; y--){
-            for (int x = screenWidth - 1; x >= 0; x--){
-                mapData.type[x][y] = mapData.type[x][y-1];
+    public void moveup (){ //ящасдохну
+        for (int Y = 39; Y > 0; Y--){
+            for(int X = 0; X <= 20; X++){
+                mapData.type[X][Y] = mapData.type[X][Y - 1];
             }
         }
-        int y = character.y - (screenHeight/2);
-        int x = character.x - (screenWidth/2);
-        for (int thisx = screenWidth - 1; thisx >= 0; thisx --){
-            mapData.type[thisx][0] = mapData.floor[x][y - 1];
+        for (int X = 0; X <= 20; X++){
+            mapData.type[X][0] = mapData.floor[mapData.topLeftCorner[0] + X][mapData.topLeftCorner[1] - 1];
         }
-
     }
     public void movedown (){
-
-        for (int y = 0; y >= screenHeight - 2; y++){
-            for (int x = screenWidth - 1; x >= 0; x++){
-                mapData.type[x][y] = mapData.type[x][y+1];
+        for (int Y = 0; Y < 39; Y++){
+            for(int X = 0; X <= 20; X++){
+                mapData.type[X][Y] = mapData.type[X][Y + 1];
             }
         }
-        int y = character.y + (screenHeight/2);
-        int x = character.x + (screenWidth/2);
-        for (int thisx = screenWidth - 1; thisx >= 0; thisx --){
-            mapData.type[thisx][0] = mapData.floor[x][y - 1];
+        for (int X = 0; X <= 20; X++){
+            mapData.type[X][40] = mapData.floor[mapData.topLeftCorner[0] + X][mapData.bottomRightCorner[1] + 1];
         }
-
     }
     public void moveright (){
-
-
-
+        for (int X = 0; X < 19; X++){
+            for (int Y = 0; Y <= 40; Y++){
+                mapData.type[X][Y] = mapData.floor[X + 1][Y];
+            }
+        }
+        for (int Y = 0; Y <= 40; Y++){
+            mapData.type[20][Y] = mapData.floor[mapData.bottomRightCorner[0] + 1][mapData.topLeftCorner[1] + Y];
+        }
     }
     public void moveleft (){
-
-
-
+        for (int X = 19; X > 0; X--){
+            for (int Y = 0; Y <= 40; Y++){
+                mapData.type[X][Y] = mapData.floor[X + 1][Y];
+            }
+        }
+        for (int Y = 0; Y <= 40; Y++){
+            mapData.type[0][Y] = mapData.floor[mapData.topLeftCorner[0] - 1][mapData.topLeftCorner[1] + Y];
+        }
     }
     public MapData getMapData() { //отдаю мапдату
         return mapData;

@@ -28,7 +28,7 @@ public class Render { //рендеринг карты
     }
     public void finish (){
         BitmapDrawable bitDraw = new BitmapDrawable(MainActivity.context(), bit);
-        bitDraw.setFilterBitmap(false);//биткарта больше не выглядит как со зрением -12
+        bitDraw.setFilterBitmap(false);//биткарта больше не выглядит как инвалид
         map.setImageDrawable(bitDraw);//установка биткарты поверх карты
     }
 
