@@ -20,8 +20,9 @@ public class Character extends View { //мэин хиро
     Setup setup; //сетапер
     Render render; //рендерер
     Colors colors; //цвета
+    CameraMovementSetup cms;
     Menu menu;
-    AlertDialog alert;
+    AlertDialog alert; //?
     Tile lastTile;
 
     public Character (Context context, int X, int Y) {
@@ -43,6 +44,7 @@ public class Character extends View { //мэин хиро
         render = setup.getRender(); //получаю рендерер
         colors = setup.getColors();
         menu = setup.getMenu();
+        cms = setup.getCameraMovementSetup(); //Настройка следования камеры
         menu.setup();
 
     }
@@ -62,39 +64,47 @@ public class Character extends View { //мэин хиро
         } else {
             if (actualX / actualY > 1) { //Верх или право
                 if (actualX + actualY > width) { //право
-                    mapData.type[x][y] = lastTile;
-                    render.generate(x, y, colors.colorMap[x][y]);
-                    x++;
-                    lastTile = mapData.type[x][y];
-                    mapData.type[x][y] = PLAYER;
-                    mapData.playerPos[0]++;
-                    render.generate(x, y, colors.player);
+                    if (cms.cameraRight()) {
+                        mapData.type[x][y] = lastTile;
+                        render.generate(x, y, colors.colorMap[x][y]);
+                        x++;
+                        lastTile = mapData.type[x][y];
+                        mapData.type[x][y] = PLAYER;
+                        mapData.playerPos[0]++;
+                        render.generate(x, y, colors.player);
+                    }
                 } else {//Верх
-                    mapData.type[x][y] = lastTile;
-                    render.generate(x, y, colors.colorMap[x][y]);
-                    y--;
-                    lastTile = mapData.type[x][y];
-                    mapData.type[x][y] = PLAYER;
-                    mapData.playerPos[1]--;
-                    render.generate(x, y, colors.player);
+                    if (cms.cameraUp()) {
+                        mapData.type[x][y] = lastTile;
+                        render.generate(x, y, colors.colorMap[x][y]);
+                        y--;
+                        lastTile = mapData.type[x][y];
+                        mapData.type[x][y] = PLAYER;
+                        mapData.playerPos[1]--;
+                        render.generate(x, y, colors.player);
+                    }
                 }
             } else { //низ или лево
                 if (actualX + actualY > width) {//низ
-                    mapData.type[x][y] = lastTile;
-                    render.generate(x, y, colors.colorMap[x][y]);
-                    y++;
-                    lastTile = mapData.type[x][y];
-                    mapData.type[x][y] = PLAYER;
-                    mapData.playerPos[1]++;
-                    render.generate(x, y, colors.player);
+                    if (cms.cameraDown()) {
+                        mapData.type[x][y] = lastTile;
+                        render.generate(x, y, colors.colorMap[x][y]);
+                        y++;
+                        lastTile = mapData.type[x][y];
+                        mapData.type[x][y] = PLAYER;
+                        mapData.playerPos[1]++;
+                        render.generate(x, y, colors.player);
+                    }
                 } else { //лево
-                    mapData.type[x][y] = lastTile;
-                    render.generate(x, y, colors.colorMap[x][y]);
-                    x--;
-                    lastTile = mapData.type[x][y];
-                    mapData.type[x][y] = PLAYER;
-                    mapData.playerPos[0]--;
-                    render.generate(x, y, colors.player);
+                    if (cms.cameraLeft()) {
+                        mapData.type[x][y] = lastTile;
+                        render.generate(x, y, colors.colorMap[x][y]);
+                        x--;
+                        lastTile = mapData.type[x][y];
+                        mapData.type[x][y] = PLAYER;
+                        mapData.playerPos[0]--;
+                        render.generate(x, y, colors.player);
+                    }
                 }
             }
             render.finish();

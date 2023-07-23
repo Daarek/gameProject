@@ -22,6 +22,7 @@ public class Setup { //Настройка карты (класс нужен чт
     Generator generator;
     Character character;
     Colors colors;
+    CameraMovementSetup cms;
 
     Menu menu;
     public Setup (int w, int h, int scrw, int scrh, ImageView m){ //получаю все что надо
@@ -38,6 +39,7 @@ public class Setup { //Настройка карты (класс нужен чт
         mapData = new MapData(width, height, screenWidth, screenHeight); //мапдаты
         colors = new Colors(width, height); //цветовой палитры
         menu = new Menu(); //менюшки
+        cms = new CameraMovementSetup();
         render = new Render(MainActivity.Context(), map, screenWidth, screenHeight); //и рендерера
         render.setup(); //подготовОчка
         for (int x = 39; x >= 0; x--){ //генерация всей карты
@@ -75,45 +77,133 @@ public class Setup { //Настройка карты (класс нужен чт
 
     }
 
-    public void moveup (){ //ящасдохну
+    public void moveup (){
         for (int Y = 39; Y > 0; Y--){
             for(int X = 0; X <= 20; X++){
                 mapData.type[X][Y] = mapData.type[X][Y - 1];
+                int color = 0;
+                switch (mapData.type[X][Y]){
+                    case EMPTY: color = colors.empty; break;
+                    case TREE: color = colors.tree; break;
+                    case STONE: color = colors.stone; break;
+                    case GRASS: color = colors.grass; break;
+                    case BUSH: color = colors.bush; break;
+                }
+                render.generate(X , Y, color);
+                colors.colorMap[X][Y] = color;
             }
         }
         for (int X = 0; X <= 20; X++){
             mapData.type[X][0] = mapData.floor[mapData.topLeftCorner[0] + X][mapData.topLeftCorner[1] - 1];
+            int color = 0;
+            switch (mapData.type[X][0]){
+                case EMPTY: color = colors.empty; break;
+                case TREE: color = colors.tree; break;
+                case STONE: color = colors.stone; break;
+                case GRASS: color = colors.grass; break;
+                case BUSH: color = colors.bush; break;
+            }
+            render.generate(X , 0, color);
+            colors.colorMap[X][0] = color;
         }
+        mapData.topLeftCorner[0]++; //поменять на - позже и проверить
+        mapData.bottomRightCorner[0]++;
     }
     public void movedown (){
         for (int Y = 0; Y < 39; Y++){
             for(int X = 0; X <= 20; X++){
                 mapData.type[X][Y] = mapData.type[X][Y + 1];
+                int color = 0;
+                switch (mapData.type[X][Y]){
+                    case EMPTY: color = colors.empty; break;//пустой тайл
+                    case TREE: color = colors.tree; break;//дерево
+                    case STONE: color = colors.stone; break;//камень
+                    case GRASS: color = colors.grass; break;//трава
+                    case BUSH: color = colors.bush; break;//куст
+                }
+                render.generate(X , Y, color);
+                colors.colorMap[X][Y] = color;
             }
         }
         for (int X = 0; X <= 20; X++){
             mapData.type[X][40] = mapData.floor[mapData.topLeftCorner[0] + X][mapData.bottomRightCorner[1] + 1];
+            int color = 0;
+            switch (mapData.type[X][40]){
+                case EMPTY: color = colors.empty; break;//пустой тайл
+                case TREE: color = colors.tree; break;//дерево
+                case STONE: color = colors.stone; break;//камень
+                case GRASS: color = colors.grass; break;//трава
+                case BUSH: color = colors.bush; break;//куст
+            }
+            render.generate(X , 40, color);
+            colors.colorMap[X][40] = color;
         }
+        mapData.topLeftCorner[0]--;
+        mapData.bottomRightCorner[0]--;
     }
     public void moveright (){
         for (int X = 0; X < 19; X++){
             for (int Y = 0; Y <= 40; Y++){
                 mapData.type[X][Y] = mapData.floor[X + 1][Y];
+                int color = 0;
+                switch (mapData.type[X][Y]){
+                    case EMPTY: color = colors.empty; break;//пустой тайл
+                    case TREE: color = colors.tree; break;//дерево
+                    case STONE: color = colors.stone; break;//камень
+                    case GRASS: color = colors.grass; break;//трава
+                    case BUSH: color = colors.bush; break;//куст
+                }
+                render.generate(X , Y, color);
+                colors.colorMap[X][Y] = color;
             }
         }
         for (int Y = 0; Y <= 40; Y++){
             mapData.type[20][Y] = mapData.floor[mapData.bottomRightCorner[0] + 1][mapData.topLeftCorner[1] + Y];
+            int color = 0;
+            switch (mapData.type[20][Y]){
+                case EMPTY: color = colors.empty; break;//пустой тайл
+                case TREE: color = colors.tree; break;//дерево
+                case STONE: color = colors.stone; break;//камень
+                case GRASS: color = colors.grass; break;//трава
+                case BUSH: color = colors.bush; break;//куст
+            }
+            render.generate(20 , Y, color);
+            colors.colorMap[20][Y] = color;
         }
+        mapData.topLeftCorner[1]++;
+        mapData.bottomRightCorner[1]++;
     }
     public void moveleft (){
         for (int X = 19; X > 0; X--){
             for (int Y = 0; Y <= 40; Y++){
                 mapData.type[X][Y] = mapData.floor[X + 1][Y];
+                int color = 0;
+                switch (mapData.type[X][Y]){
+                    case EMPTY: color = colors.empty; break;//пустой тайл
+                    case TREE: color = colors.tree; break;//дерево
+                    case STONE: color = colors.stone; break;//камень
+                    case GRASS: color = colors.grass; break;//трава
+                    case BUSH: color = colors.bush; break;//куст
+                }
+                render.generate(X , Y, color);
+                colors.colorMap[X][Y] = color;
             }
         }
         for (int Y = 0; Y <= 40; Y++){
             mapData.type[0][Y] = mapData.floor[mapData.topLeftCorner[0] - 1][mapData.topLeftCorner[1] + Y];
+            int color = 0;
+            switch (mapData.type[0][Y]){
+                case EMPTY: color = colors.empty; break;//пустой тайл
+                case TREE: color = colors.tree; break;//дерево
+                case STONE: color = colors.stone; break;//камень
+                case GRASS: color = colors.grass; break;//трава
+                case BUSH: color = colors.bush; break;//куст
+            }
+            render.generate(0 , Y, color);
+            colors.colorMap[0][Y] = color;
         }
+        mapData.topLeftCorner[1]--;
+        mapData.bottomRightCorner[1]--;
     }
     public MapData getMapData() { //отдаю мапдату
         return mapData;
@@ -131,4 +221,7 @@ public class Setup { //Настройка карты (класс нужен чт
         return menu;
     }
 
+    public CameraMovementSetup getCameraMovementSetup() {
+        return cms;
+    }
 }

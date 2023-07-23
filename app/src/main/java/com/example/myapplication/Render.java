@@ -23,13 +23,14 @@ public class Render { //рендеринг карты
 
         bit = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888); //создание пустой битмапы
     }
-    public void generate(int x, int y, int color /* координаты пикселя и цвет*/){//задаёт один пиксель визуальной карты
+    public void generate(int x, int y, int color ){
         bit.setPixel(x, y, color);
     }
     public void finish (){
         BitmapDrawable bitDraw = new BitmapDrawable(MainActivity.context(), bit);
         bitDraw.setFilterBitmap(false);//биткарта больше не выглядит как инвалид
-        map.setImageDrawable(bitDraw);//установка биткарты поверх карты
+        map.setImageDrawable(bitDraw);//установка биткарты
     }
 
-}
+}/* координаты пикселя и цвет*/
+//задаёт один пиксель визуальной карты
