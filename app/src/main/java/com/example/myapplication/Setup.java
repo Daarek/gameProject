@@ -3,6 +3,7 @@ package com.example.myapplication;
 import static com.example.myapplication.Tile.BUSH;
 import static com.example.myapplication.Tile.EMPTY;
 import static com.example.myapplication.Tile.GRASS;
+import static com.example.myapplication.Tile.PLAYER;
 import static com.example.myapplication.Tile.STONE;
 import static com.example.myapplication.Tile.TREE;
 
@@ -68,7 +69,6 @@ public class Setup { //Настройка карты (класс нужен чт
                 colors.colorMap[x][y] = color;
             }
         }
-
         character.setReferences();
         character.create(); //подготовОчка
         int color = colors.player; //PLAYER
@@ -103,14 +103,18 @@ public class Setup { //Настройка карты (класс нужен чт
                 case GRASS: color = colors.grass; break;
                 case BUSH: color = colors.bush; break;
             }
-            render.generate(X , 0, color);
+            render.generate(X, 0, color);
             colors.colorMap[X][0] = color;
         }
-        mapData.topLeftCorner[0]++; //поменять на - позже и проверить
-        mapData.bottomRightCorner[0]++;
+        mapData.topLeftCorner[1]--;
+        mapData.bottomRightCorner[1]--;
+        character.lastTile = mapData.type[character.x][character.y];
+        mapData.type[character.x][character.y] = PLAYER;
+        mapData.type[character.x][character.y] = character.lastTile;
+        render.generate(character.x, character.y, colors.player);
     }
     public void movedown (){
-        for (int Y = 0; Y < 39; Y++){
+        for (int Y = 0; Y < 40; Y++){
             for(int X = 0; X <= 20; X++){
                 mapData.type[X][Y] = mapData.type[X][Y + 1];
                 int color = 0;
@@ -138,13 +142,17 @@ public class Setup { //Настройка карты (класс нужен чт
             render.generate(X , 40, color);
             colors.colorMap[X][40] = color;
         }
-        mapData.topLeftCorner[0]--;
-        mapData.bottomRightCorner[0]--;
+        mapData.topLeftCorner[1]++;
+        mapData.bottomRightCorner[1]++;
+        character.lastTile = mapData.type[character.x][character.y];
+        mapData.type[character.x][character.y] = PLAYER;
+        mapData.type[character.x][character.y] = character.lastTile;
+        render.generate(character.x, character.y, colors.player);
     }
     public void moveright (){
-        for (int X = 0; X < 19; X++){
+        for (int X = 0; X < 20; X++){
             for (int Y = 0; Y <= 40; Y++){
-                mapData.type[X][Y] = mapData.floor[X + 1][Y];
+                mapData.type[X][Y] = mapData.type[X + 1][Y];
                 int color = 0;
                 switch (mapData.type[X][Y]){
                     case EMPTY: color = colors.empty; break;//пустой тайл
@@ -170,13 +178,17 @@ public class Setup { //Настройка карты (класс нужен чт
             render.generate(20 , Y, color);
             colors.colorMap[20][Y] = color;
         }
-        mapData.topLeftCorner[1]++;
-        mapData.bottomRightCorner[1]++;
+        mapData.topLeftCorner[0]++;
+        mapData.bottomRightCorner[0]++;
+        character.lastTile = mapData.type[character.x][character.y];
+        mapData.type[character.x][character.y] = PLAYER;
+        mapData.type[character.x][character.y] = character.lastTile;
+        render.generate(character.x, character.y, colors.player);
     }
     public void moveleft (){
         for (int X = 19; X > 0; X--){
             for (int Y = 0; Y <= 40; Y++){
-                mapData.type[X][Y] = mapData.floor[X + 1][Y];
+                mapData.type[X][Y] = mapData.type[X - 1][Y];
                 int color = 0;
                 switch (mapData.type[X][Y]){
                     case EMPTY: color = colors.empty; break;//пустой тайл
@@ -202,8 +214,12 @@ public class Setup { //Настройка карты (класс нужен чт
             render.generate(0 , Y, color);
             colors.colorMap[0][Y] = color;
         }
-        mapData.topLeftCorner[1]--;
-        mapData.bottomRightCorner[1]--;
+        mapData.topLeftCorner[0]--;
+        mapData.bottomRightCorner[0]--;
+        character.lastTile = mapData.type[character.x][character.y];
+        mapData.type[character.x][character.y] = PLAYER;
+        mapData.type[character.x][character.y] = character.lastTile;
+        render.generate(character.x, character.y, colors.player);
     }
     public MapData getMapData() { //отдаю мапдату
         return mapData;
@@ -220,7 +236,6 @@ public class Setup { //Настройка карты (класс нужен чт
     public Menu getMenu () {
         return menu;
     }
-
     public CameraMovementSetup getCameraMovementSetup() {
         return cms;
     }

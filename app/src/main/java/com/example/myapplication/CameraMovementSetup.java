@@ -88,7 +88,7 @@ public class CameraMovementSetup {
             Tile test;
             Boolean isBorder;
             try {
-                test = mapData.floor[mapData.bottomRightCorner[0] - 1][mapData.bottomRightCorner[1]];
+                test = mapData.floor[mapData.topLeftCorner[0] - 1][mapData.topLeftCorner[1]];
                 isBorder = false;
             } catch (Exception error) {
                 isBorder = true;
