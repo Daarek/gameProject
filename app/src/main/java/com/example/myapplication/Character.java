@@ -62,10 +62,11 @@ public class Character extends View { //мэин хиро
         if ((fwp < actualX && actualX < swp) && (fhp < actualY && actualY < shp)){ //проверяет, было ли нажатие в центре
             menu.alert();
         } else {
+            mapData.type[x][y] = lastTile;
             if (actualX / actualY > 1) { //Верх или право
                 if (actualX + actualY > width) { //право
                     if (cms.cameraRight()) {
-                        mapData.type[x][y] = lastTile;
+
                         render.generate(x, y, colors.colorMap[x][y]);
                         x++;
                         lastTile = mapData.type[x][y];
@@ -75,7 +76,7 @@ public class Character extends View { //мэин хиро
                     }
                 } else {//Верх
                     if (cms.cameraUp()) {
-                        mapData.type[x][y] = lastTile;
+
                         render.generate(x, y, colors.colorMap[x][y]);
                         y--;
                         lastTile = mapData.type[x][y];
@@ -87,7 +88,7 @@ public class Character extends View { //мэин хиро
             } else { //низ или лево
                 if (actualX + actualY > width) {//низ
                     if (cms.cameraDown()) {
-                        mapData.type[x][y] = lastTile;
+
                         render.generate(x, y, colors.colorMap[x][y]);
                         y++;
                         lastTile = mapData.type[x][y];
@@ -97,7 +98,7 @@ public class Character extends View { //мэин хиро
                     }
                 } else { //лево
                     if (cms.cameraLeft()) {
-                        mapData.type[x][y] = lastTile;
+
                         render.generate(x, y, colors.colorMap[x][y]);
                         x--;
                         lastTile = mapData.type[x][y];

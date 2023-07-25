@@ -15,6 +15,9 @@ public class CameraMovementSetup {
     }
 
     public boolean cameraUp () {
+        if (shiftUp == 20){
+            return false;
+        }
         if (shiftDown == 0) {
             Tile test;
             Boolean isBorder;
@@ -38,6 +41,9 @@ public class CameraMovementSetup {
     }
 
     public boolean cameraDown () {
+        if (shiftDown == 20){
+            return false;
+        }
         if (shiftUp == 0) {
             Tile test;
             Boolean isBorder;
@@ -61,6 +67,9 @@ public class CameraMovementSetup {
     }
 
     public boolean cameraRight () {
+        if (shiftRight == 10){
+            return false;
+        }
         if (shiftLeft == 0) {
             Tile test;
             Boolean isBorder;
@@ -84,6 +93,9 @@ public class CameraMovementSetup {
     }
 
     public boolean cameraLeft () {
+        if (shiftLeft == 10){
+            return false;
+        }
         if (shiftRight == 0) {
             Tile test;
             Boolean isBorder;
@@ -105,4 +117,5 @@ public class CameraMovementSetup {
             return true;
         }
     }
+
 }

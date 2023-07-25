@@ -19,12 +19,11 @@ import org.xmlpull.v1.XmlPullParser;
 public class MainActivity extends AppCompatActivity { //さんとりお!
     static Context context;
     static Setup setup;
-
     static  double shift;
-
     ImageView map; //ссылки на элементы
     ConstraintLayout layout;
     Character character; //получу персонажа позже
+    MapData mapData;
 
     public static Resources context() {//другой контекст для Drawable
 
