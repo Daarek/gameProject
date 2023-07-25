@@ -2,22 +2,34 @@ package com.example.myapplication;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class Menu {
-    AlertDialog alert;
-    AlertDialog.Builder alertBuilder;
+    AlertDialog menu;
+    AlertDialog.Builder menuBuilder;
+    AlertDialog interaction;
+    AlertDialog.Builder interactionBuilder;
+    Button interact;
+    TextView amount;
 
     public Menu () {
 
     }
 
     public void setup () {
-        alertBuilder = new AlertDialog.Builder(MainActivity.Context());
-        alertBuilder.setView(R.layout.menu);
-        alert = alertBuilder.create();
+        menuBuilder = new AlertDialog.Builder(MainActivity.Context());
+        menuBuilder.setView(R.layout.menu);
+        menu = menuBuilder.create();
+        interactionBuilder = new AlertDialog.Builder(MainActivity.Context());
+        interactionBuilder.setView(R.layout.interaction);
+        interaction = interactionBuilder.create();
+        //доделать тут
     }
 
     public void alert () {
-        alert.show();
+        menu.show();
     }
 }

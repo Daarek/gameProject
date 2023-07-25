@@ -69,6 +69,11 @@ public class Setup { //Настройка карты (класс нужен чт
                 colors.colorMap[x][y] = color;
             }
         }
+        for (int i = 0; i < mapData.amount.length; i++){ //генерирую ресурсы на карте
+            for (int j = 0; j < mapData.amount[i].length; j++){
+                mapData.amount[i][j] = generator.generateResource(mapData.floor[i][j]);
+            }
+        }
         character.setReferences();
         character.create(); //подготовОчка
         int color = colors.player; //PLAYER
@@ -76,7 +81,6 @@ public class Setup { //Настройка карты (класс нужен чт
         render.finish(); //отображаю биткарту
 
     }
-
     public void moveup (){
         for (int Y = 39; Y > 0; Y--){
             for(int X = 0; X <= 20; X++){

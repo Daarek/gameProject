@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity { //さんとりお!
     ImageView map; //ссылки на элементы
     ConstraintLayout layout;
     Character character; //получу персонажа позже
-    MapData mapData;
 
     public static Resources context() {//другой контекст для Drawable
 
