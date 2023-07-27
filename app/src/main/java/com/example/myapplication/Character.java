@@ -24,6 +24,9 @@ public class Character extends View { //мэин хиро
     Menu menu;
     AlertDialog alert; //?
     Tile lastTile;
+    Character.Inventory inventory;
+
+    //------------------------------------------------------
 
     public Character (Context context, int X, int Y) {
         super(context);
@@ -36,7 +39,7 @@ public class Character extends View { //мэин хиро
         centerX = width/2; //получаю координаты центра
         centerY = height/2;
         shift = (double) width/height; //получаю шифт (ширина/высота) (всегда между 0 и 1)
-
+        this.inventory = new Inventory();
     }
     public void setReferences(){
         setup = MainActivity.getSetup(); //получаю сетапер
@@ -111,6 +114,22 @@ public class Character extends View { //мэин хиро
             render.finish();
         }
     }
-    
+
+    //-----------------------------------------------------------------------------
+
+    public class Inventory {
+
+        public Inventory () {
+            this.wood = 0;
+            this.stone = 0;
+            this.thread = 0;
+            this.berries = 0;
+        }
+        public int wood;
+        public int stone;
+        public int thread;
+        public int berries;
+
+    }
 
 }

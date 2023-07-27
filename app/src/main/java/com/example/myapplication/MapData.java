@@ -2,8 +2,8 @@ package com.example.myapplication;
 
 public class MapData { //Данные о каждом тайле
 
-    public Tile[][] type;
-    public Tile[][] floor;
+    public Tile[][] type; //локальная карта с игроком
+    public Tile[][] floor; //Вся карта без игрока
     public int[][] amount;
     public int[] playerPos = new int[2]; //0 - x, 1 - y на глобальной карте
     public int[] topLeftCorner = new int[2];

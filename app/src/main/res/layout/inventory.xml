@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/type4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thread"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.339"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Berries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Berries"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/amountBerries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="amountBerries"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/Berries"
+        app:layout_constraintStart_toStartOf="@+id/Berries"
+        app:layout_constraintTop_toBottomOf="@+id/Berries"
+        app:layout_constraintVertical_bias="0.002" />
+
+    <TextView
+        android:id="@+id/amountThread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="amountThead"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/type4"
+        app:layout_constraintStart_toStartOf="@+id/type4"
+        app:layout_constraintTop_toBottomOf="@+id/type4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/type2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.382" />
+
+    <TextView
+        android:id="@+id/amountStone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="amountStone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/type2"
+        app:layout_constraintStart_toStartOf="@+id/type2"
+        app:layout_constraintTop_toBottomOf="@+id/type2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/type1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wood"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.339"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.382" />
+
+    <TextView
+        android:id="@+id/amountWood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="320dp"
+        android:text="amountWood"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/type1"
+        app:layout_constraintStart_toStartOf="@+id/type1"
+        app:layout_constraintTop_toBottomOf="@+id/type1"
+        app:layout_constraintVertical_bias="0.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

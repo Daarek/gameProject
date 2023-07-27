@@ -79,9 +79,67 @@ public class Setup { //Настройка карты (класс нужен чт
         int color = colors.player; //PLAYER
         render.generate(character.x, character.y, color); //ставлю персонажа
         render.finish(); //отображаю биткарту
+        moveup(); //легендарные костыли
+        movedown();
 
     }
-    public void moveup (){
+    public void moveup () {
+        mapData.topLeftCorner[1]--;
+        mapData.bottomRightCorner[1]--;
+        for (int i = 0; i <= 20; i++){
+            for(int j = 0; j <= 40; j++){
+                mapData.type[i][j] = mapData.floor[mapData.topLeftCorner[0] + i][mapData.topLeftCorner[1] + j];
+            }
+        }
+        render.update();
+        character.lastTile = mapData.type[character.x][character.y];
+        mapData.type[character.x][character.y] = PLAYER;
+        mapData.type[character.x][character.y] = character.lastTile;
+        render.generate(character.x, character.y, colors.player);
+    }
+    public void movedown () {
+        mapData.topLeftCorner[1]++;
+        mapData.bottomRightCorner[1]++;
+        for (int i = 0; i <= 20; i++){
+            for(int j = 0; j <= 40; j++){
+                mapData.type[i][j] = mapData.floor[mapData.topLeftCorner[0] + i][mapData.topLeftCorner[1] + j];
+            }
+        }
+        render.update();
+        character.lastTile = mapData.type[character.x][character.y];
+        mapData.type[character.x][character.y] = PLAYER;
+        mapData.type[character.x][character.y] = character.lastTile;
+        render.generate(character.x, character.y, colors.player);
+    }
+    public void moveleft () {
+        mapData.topLeftCorner[0]--;
+        mapData.bottomRightCorner[0]--;
+        for (int i = 0; i <= 20; i++){
+            for(int j = 0; j <= 40; j++){
+                mapData.type[i][j] = mapData.floor[mapData.topLeftCorner[0] + i][mapData.topLeftCorner[1] + j];
+            }
+        }
+        render.update();
+        character.lastTile = mapData.type[character.x][character.y];
+        mapData.type[character.x][character.y] = PLAYER;
+        mapData.type[character.x][character.y] = character.lastTile;
+        render.generate(character.x, character.y, colors.player);
+    }
+    public void moveright () {
+        mapData.topLeftCorner[0]++;
+        mapData.bottomRightCorner[0]++;
+        for (int i = 0; i <= 20; i++){
+            for(int j = 0; j <= 40; j++){
+                mapData.type[i][j] = mapData.floor[mapData.topLeftCorner[0] + i][mapData.topLeftCorner[1] + j];
+            }
+        }
+        render.update();
+        character.lastTile = mapData.type[character.x][character.y];
+        mapData.type[character.x][character.y] = PLAYER;
+        mapData.type[character.x][character.y] = character.lastTile;
+        render.generate(character.x, character.y, colors.player);
+    }
+    /*public void moveup (){
         for (int Y = 39; Y > 0; Y--){
             for(int X = 0; X <= 20; X++){
                 mapData.type[X][Y] = mapData.type[X][Y - 1];
@@ -224,7 +282,7 @@ public class Setup { //Настройка карты (класс нужен чт
         mapData.type[character.x][character.y] = PLAYER;
         mapData.type[character.x][character.y] = character.lastTile;
         render.generate(character.x, character.y, colors.player);
-    }
+    } */
     public MapData getMapData() { //отдаю мапдату
         return mapData;
     }

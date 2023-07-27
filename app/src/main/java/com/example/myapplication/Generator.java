@@ -21,10 +21,10 @@ public class Generator { //генерация ресурсов, тайлов и 
     double generated = Math.random();
     switch (type){
       case EMPTY: return 0;
-      case BUSH: return (int)(generated * 10);
-      case GRASS: return (int)(generated * 10);
-      case TREE: return (int)(generated * 5);
-      case STONE: return (int)(generated * 5);
+      case BUSH: return (int)(generated * 10 + 1);
+      case GRASS: return (int)(generated * 10 + 1);
+      case TREE: return (int)(generated * 5 + 1);
+      case STONE: return (int)(generated * 5 + 1);
     }
     return 0;
   }

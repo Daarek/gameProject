@@ -18,6 +18,7 @@ public class CameraMovementSetup {
         if (shiftUp == 20){
             return false;
         }
+        mapData.playerPos[1]--;
         if (shiftDown == 0) {
             Tile test;
             Boolean isBorder;
@@ -44,6 +45,7 @@ public class CameraMovementSetup {
         if (shiftDown == 20){
             return false;
         }
+        mapData.playerPos[1]++;
         if (shiftUp == 0) {
             Tile test;
             Boolean isBorder;
@@ -70,6 +72,7 @@ public class CameraMovementSetup {
         if (shiftRight == 10){
             return false;
         }
+        mapData.playerPos[0]++;
         if (shiftLeft == 0) {
             Tile test;
             Boolean isBorder;
@@ -96,6 +99,7 @@ public class CameraMovementSetup {
         if (shiftLeft == 10){
             return false;
         }
+        mapData.playerPos[0]--;
         if (shiftRight == 0) {
             Tile test;
             Boolean isBorder;
