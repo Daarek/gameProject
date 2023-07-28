@@ -74,7 +74,7 @@ public class Character extends View { //мэин хиро
                         x++;
                         lastTile = mapData.type[x][y];
                         mapData.type[x][y] = PLAYER;
-                        mapData.playerPos[0]++;
+
                         render.generate(x, y, colors.player);
                     }
                 } else {//Верх
@@ -84,7 +84,7 @@ public class Character extends View { //мэин хиро
                         y--;
                         lastTile = mapData.type[x][y];
                         mapData.type[x][y] = PLAYER;
-                        mapData.playerPos[1]--;
+
                         render.generate(x, y, colors.player);
                     }
                 }
@@ -96,7 +96,7 @@ public class Character extends View { //мэин хиро
                         y++;
                         lastTile = mapData.type[x][y];
                         mapData.type[x][y] = PLAYER;
-                        mapData.playerPos[1]++;
+
                         render.generate(x, y, colors.player);
                     }
                 } else { //лево
@@ -106,7 +106,7 @@ public class Character extends View { //мэин хиро
                         x--;
                         lastTile = mapData.type[x][y];
                         mapData.type[x][y] = PLAYER;
-                        mapData.playerPos[0]--;
+
                         render.generate(x, y, colors.player);
                     }
                 }
