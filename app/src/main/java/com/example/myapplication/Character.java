@@ -129,6 +129,9 @@ public class Character extends View { //мэин хиро
         public int stone;
         public int thread;
         public int berries;
+        public int planks;
+        public int strings;
+        public int slabs;
 
     }
 

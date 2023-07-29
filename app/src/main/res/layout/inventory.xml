@@ -12,9 +12,10 @@
         android:text="Thread"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.339"
+        app:layout_constraintHorizontal_bias="0.34"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.382" />
 
     <TextView
         android:id="@+id/Berries"
@@ -23,9 +24,10 @@
         android:text="Berries"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.382" />
 
     <TextView
         android:id="@+id/amountBerries"
@@ -56,10 +58,10 @@
         android:text="Stone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintHorizontal_bias="0.597"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.382" />
+        app:layout_constraintVertical_bias="0.251" />
 
     <TextView
         android:id="@+id/amountStone"
@@ -79,10 +81,10 @@
         android:text="Wood"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.339"
+        app:layout_constraintHorizontal_bias="0.352"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.382" />
+        app:layout_constraintVertical_bias="0.252" />
 
     <TextView
         android:id="@+id/amountWood"
@@ -95,4 +97,67 @@
         app:layout_constraintStart_toStartOf="@+id/type1"
         app:layout_constraintTop_toBottomOf="@+id/type1"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/type5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Planks"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.337"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amountThread"
+        app:layout_constraintVertical_bias="0.114" />
+
+    <TextView
+        android:id="@+id/amountPlanks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="amountPlanks"
+        app:layout_constraintEnd_toEndOf="@+id/type5"
+        app:layout_constraintStart_toStartOf="@+id/type5"
+        app:layout_constraintTop_toBottomOf="@+id/type5" />
+
+    <TextView
+        android:id="@+id/type6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Strings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.634"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amountBerries"
+        app:layout_constraintVertical_bias="0.112" />
+
+    <TextView
+        android:id="@+id/amountStrings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="amountStrings"
+        app:layout_constraintEnd_toEndOf="@+id/type6"
+        app:layout_constraintStart_toStartOf="@+id/type6"
+        app:layout_constraintTop_toBottomOf="@+id/type6" />
+
+    <TextView
+        android:id="@+id/type7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Slabs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.334"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amountPlanks"
+        app:layout_constraintVertical_bias="0.16" />
+
+    <TextView
+        android:id="@+id/amountSlabs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="amountSlabs"
+        app:layout_constraintEnd_toEndOf="@+id/type7"
+        app:layout_constraintStart_toStartOf="@+id/type7"
+        app:layout_constraintTop_toBottomOf="@+id/type7" />
 </androidx.constraintlayout.widget.ConstraintLayout>
