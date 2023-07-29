@@ -124,6 +124,9 @@ public class Character extends View { //мэин хиро
             this.stone = 0;
             this.thread = 0;
             this.berries = 0;
+            this.planks = 0;
+            this.strings = 0;
+            this.slabs = 0;
         }
         public int wood;
         public int stone;

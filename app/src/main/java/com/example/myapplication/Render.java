@@ -36,6 +36,7 @@ public class Render { //рендеринг карты
                 int color = 0;
                 switch (mapData.type[i][j]){
                     case TREE: color = colors.tree; break;
+                    case WALL: color = colors.wall; break;
                     case GRASS: color = colors.grass; break;
                     case BUSH: color = colors.bush; break;
                     case EMPTY: color = colors.empty; break;

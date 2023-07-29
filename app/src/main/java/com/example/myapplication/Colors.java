@@ -9,6 +9,7 @@ public class Colors {
     public final int bush = Color.rgb(80, 180, 0);
     public final int grass = Color.rgb(0, 200, 0);
     public final int player = Color.rgb(0, 0, 255);
+    public final int wall = Color.rgb(255, 130, 43);
     public int[][] colorMap;
     public Colors (int width, int height){
         colorMap = new int[width][height]; //поверхность земли без игрока

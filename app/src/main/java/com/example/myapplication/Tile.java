@@ -7,7 +7,8 @@ public enum Tile { //типы тайлов
     STONE("Stone"),
     BUSH("Bush"),
     GRASS("Grass"),
-    PLAYER("Player");
+    PLAYER("Player"),
+    WALL("Wall");
 
     private String display;
     Tile (String display){ //Я фиг его знает как это работает
