@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import static com.example.myapplication.Tile.PLAYER;
+import static com.example.myapplication.Tile.WALL;
 
 public class CameraMovementSetup {
     Setup setup;
@@ -15,7 +16,7 @@ public class CameraMovementSetup {
     }
 
     public boolean cameraUp () {
-        if (shiftUp == 20){
+        if (shiftUp == 20 || mapData.floor[mapData.playerPos[0]][mapData.playerPos[1] - 1] == WALL){
             return false;
         }
         mapData.playerPos[1]--;
@@ -42,7 +43,7 @@ public class CameraMovementSetup {
     }
 
     public boolean cameraDown () {
-        if (shiftDown == 20){
+        if (shiftDown == 20 || mapData.floor[mapData.playerPos[0]][mapData.playerPos[1] + 1] == WALL){
             return false;
         }
         mapData.playerPos[1]++;
@@ -69,7 +70,7 @@ public class CameraMovementSetup {
     }
 
     public boolean cameraRight () {
-        if (shiftRight == 10){
+        if (shiftRight == 10 || mapData.floor[mapData.playerPos[0] + 1][mapData.playerPos[1]] == WALL){
             return false;
         }
         mapData.playerPos[0]++;
@@ -96,7 +97,7 @@ public class CameraMovementSetup {
     }
 
     public boolean cameraLeft () {
-        if (shiftLeft == 10){
+        if (shiftLeft == 10 || mapData.floor[mapData.playerPos[0] - 1][mapData.playerPos[1]] == WALL){
             return false;
         }
         mapData.playerPos[0]--;
