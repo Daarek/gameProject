@@ -6,47 +6,57 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/inventory"
+        android:id="@+id/mCurrent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="inentory"
+        android:text="mine this"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/mine"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/mTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mine top"
+        app:layout_constraintBottom_toTopOf="@+id/mCurrent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/mine"
+        android:id="@+id/mDown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="mine"
+        android:text="mine bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/craft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="craft"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/mine"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/building"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="build"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mine"
+        app:layout_constraintTop_toBottomOf="@+id/mCurrent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/mLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mine left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mCurrent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/mRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="mine right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mCurrent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

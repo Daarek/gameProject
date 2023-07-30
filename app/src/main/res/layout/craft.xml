@@ -6,47 +6,36 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/inventory"
+        android:id="@+id/planksCraft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="inentory"
+        android:text="2 Wood\n-\n1 Plank"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/mine"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
 
     <Button
-        android:id="@+id/mine"
+        android:id="@+id/stringsCraft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="mine"
+        android:text="1 Thread\n-\n1 String"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/craft"
+        android:id="@+id/slabsCraft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="craft"
+        android:text="4 Stone\n-\n1 Slab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/mine"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/building"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="build"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.949"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mine"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 </androidx.constraintlayout.widget.ConstraintLayout>

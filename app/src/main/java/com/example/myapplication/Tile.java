@@ -2,11 +2,19 @@ package com.example.myapplication;
 
 public enum Tile { //типы тайлов
 
-    EMPTY,
-    TREE,
-    STONE,
-    BUSH,
-    GRASS,
-    PLAYER,
+    EMPTY("Empty"),
+    TREE("Tree"),
+    STONE("Stone"),
+    BUSH("Bush"),
+    GRASS("Grass"),
+    PLAYER("Player"),
+    WALL("Wall");
 
+    private String display;
+    Tile (String display){ //Я фиг его знает как это работает
+        this.display = display;
+    }
+    public String toString(){
+        return display;
+    }
 }

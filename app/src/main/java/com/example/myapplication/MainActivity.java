@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,12 +20,11 @@ import org.xmlpull.v1.XmlPullParser;
 public class MainActivity extends AppCompatActivity { //さんとりお!
     static Context context;
     static Setup setup;
-
+    static Menu menu;
     static  double shift;
-
     ImageView map; //ссылки на элементы
     ConstraintLayout layout;
-    Character character; //получу персонажа позже
+    Character character;
 
     public static Resources context() {//другой контекст для Drawable
 
@@ -45,8 +45,9 @@ public class MainActivity extends AppCompatActivity { //さんとりお!
         int width = metrics.widthPixels; //получаю размеры экрана
         int height = metrics.heightPixels;
         shift = (double) width/height; //получаю шифт (ширина/высота) (всегда между 0 и 1)
-        setup = new Setup(20, (int)(20/shift) , map);//настраиваю сетап
+        setup = new Setup(40, 60 , 21, 41, map);//настраиваю сетап
         setup.build();
+        menu = setup.getMenu();
         character = setup.getCharacter(); //получаю ссылку на обьект персонажа
         layout = findViewById(R.id.layout);//получаю лейаут и ставлю обработку тапов
         layout.setOnTouchListener(new View.OnTouchListener() {
