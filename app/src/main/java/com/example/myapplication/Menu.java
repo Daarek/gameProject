@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Menu {
-    private AlertDialog menu;
+    public AlertDialog menu;
     private AlertDialog.Builder menuBuilder;
     private AlertDialog inventory;
     private AlertDialog.Builder inventoryBuilder;
@@ -42,6 +42,8 @@ public class Menu {
     private Setup setup;
     private Character character;
     private Render render;
+
+    public View menuView;
 
     public Menu () {
     }
@@ -167,7 +169,7 @@ public class Menu {
                     case GRASS: toast.setText("Волокно + " + mapData.amount[mapData.playerPos[0]][mapData.playerPos[1] - 1]); toast.show(); character.inventory.thread += mapData.amount[mapData.playerPos[0]][mapData.playerPos[1] - 1]; mapData.amount[mapData.playerPos[0]][mapData.playerPos[1] - 1] = 0; mapData.floor[mapData.playerPos[0]][mapData.playerPos[1] - 1] = Tile.EMPTY; mapData.type[character.x][character.y - 1] = Tile.EMPTY; break;
                 }
                 render.update();
-                render.generate(character.x, character.y, setup.colors.player);
+                render.generate(character.x, character.y, setup.colors.playerImage);
                 render.finish();
                 mine.hide();
                 menu.hide();
@@ -187,7 +189,7 @@ public class Menu {
                 }
 
                 render.update();
-                render.generate(character.x, character.y, setup.colors.player);
+                render.generate(character.x, character.y, setup.colors.playerImage);
                 render.finish();
                 mine.hide();
                 menu.hide();
@@ -207,7 +209,7 @@ public class Menu {
                 }
 
                 render.update();
-                render.generate(character.x, character.y, setup.colors.player);
+                render.generate(character.x, character.y, setup.colors.playerImage);
                 render.finish();
                 mine.hide();
                 menu.hide();
@@ -227,7 +229,7 @@ public class Menu {
                 }
 
                 render.update();
-                render.generate(character.x, character.y, setup.colors.player);
+                render.generate(character.x, character.y, setup.colors.playerImage);
                 render.finish();
                 mine.hide();
                 menu.hide();
@@ -298,4 +300,3 @@ public class Menu {
         menu.show();
     }
 }
-

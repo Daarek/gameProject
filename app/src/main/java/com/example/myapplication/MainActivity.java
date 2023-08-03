@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity { //さんとりお!
 
         return null;
     }
-    public static Setup getSetup(){
+    public static com.example.myapplication.Setup getSetup(){
         return setup;
     }
 
