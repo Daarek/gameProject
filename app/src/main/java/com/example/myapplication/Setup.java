@@ -39,6 +39,7 @@ public class Setup { //Настройка карты (класс нужен чт
         generator = new Generator(); //генератора
         mapData = new MapData(width, height, screenWidth, screenHeight); //мапдаты
         colors = new Colors(width, height); //цветовой палитры
+        colors.handleBitmaps();
         menu = new Menu(); //менюшки
         cms = new CameraMovementSetup();
         render = new Render(MainActivity.Context(), map, screenWidth, screenHeight); //и рендерера
@@ -57,13 +58,13 @@ public class Setup { //Настройка карты (класс нужен чт
             for (int scry = character.y - (screenHeight/2); scry <= character.y + (screenHeight/2); scry++){
                 y++;
                 mapData.type[x][y] = mapData.floor[scrx][scry];
-                int color = 0; //содержит цифровой код цвета (RGB)
+                int[][] color = new int[21][21];
                 switch (mapData.type[x][y]){
-                    case EMPTY: color = colors.empty; break;//пустой тайл
-                    case TREE: color = colors.tree; break;//дерево
-                    case STONE: color = colors.stone; break;//камень
-                    case GRASS: color = colors.grass; break;//трава
-                    case BUSH: color = colors.bush; break;//куст
+                    case EMPTY: color = colors.emptyImage; break;//пустой тайл
+                    case TREE: color = colors.treeImage; break;//дерево
+                    case STONE: color = colors.stoneImage; break;//камень
+                    case GRASS: color = colors.grassImage; break;//трава
+                    case BUSH: color = colors.bushImage; break;//куст
                 }
                 render.generate(x , y, color);
                 colors.colorMap[x][y] = color;
@@ -76,7 +77,7 @@ public class Setup { //Настройка карты (класс нужен чт
         }
         character.setReferences();
         character.create(); //подготовОчка
-        int color = colors.player; //PLAYER
+        int[][] color = colors.playerImage; //PLAYER
         render.generate(character.x, character.y, color); //ставлю персонажа
         render.finish(); //отображаю биткарту
         moveup(); //легендарные костыли
@@ -95,7 +96,7 @@ public class Setup { //Настройка карты (класс нужен чт
         character.lastTile = mapData.type[character.x][character.y];
         mapData.type[character.x][character.y] = PLAYER;
         mapData.type[character.x][character.y] = character.lastTile;
-        render.generate(character.x, character.y, colors.player);
+        render.generate(character.x, character.y, colors.playerImage);
     }
     public void movedown () {
         mapData.topLeftCorner[1]++;
@@ -109,7 +110,7 @@ public class Setup { //Настройка карты (класс нужен чт
         character.lastTile = mapData.type[character.x][character.y];
         mapData.type[character.x][character.y] = PLAYER;
         mapData.type[character.x][character.y] = character.lastTile;
-        render.generate(character.x, character.y, colors.player);
+        render.generate(character.x, character.y, colors.playerImage);
     }
     public void moveleft () {
         mapData.topLeftCorner[0]--;
@@ -123,7 +124,7 @@ public class Setup { //Настройка карты (класс нужен чт
         character.lastTile = mapData.type[character.x][character.y];
         mapData.type[character.x][character.y] = PLAYER;
         mapData.type[character.x][character.y] = character.lastTile;
-        render.generate(character.x, character.y, colors.player);
+        render.generate(character.x, character.y, colors.playerImage);
     }
     public void moveright () {
         mapData.topLeftCorner[0]++;
@@ -137,7 +138,7 @@ public class Setup { //Настройка карты (класс нужен чт
         character.lastTile = mapData.type[character.x][character.y];
         mapData.type[character.x][character.y] = PLAYER;
         mapData.type[character.x][character.y] = character.lastTile;
-        render.generate(character.x, character.y, colors.player);
+        render.generate(character.x, character.y, colors.playerImage);
     }
     public MapData getMapData() { //отдаю мапдату
         return mapData;
